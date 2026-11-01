@@ -1,0 +1,22 @@
+name: KB Metadata Linter
+
+on:
+  push:
+    branches: [ lab02, main ]
+  pull_request:
+    branches: [ lab02, main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Metadata Linter
+        run: python tools/lint_meta.py
