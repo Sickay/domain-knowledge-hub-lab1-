@@ -1,0 +1,13 @@
+id,parent_id,label
+C_ROOT,None,Кластеризована база понять
+C_CLUSTER_1,C_ROOT,Кластер обладнання та механізмів
+C_CLUSTER_2,C_ROOT,Кластер програмного забезпечення
+C_CLUSTER_3,C_ROOT,Кластер мереж і протоколів
+C_CLUSTER_4,C_ROOT,Кластер вимірювальних приладів
+C_EL_1,C_CLUSTER_1,Верстати ЧПК
+C_EL_2,C_CLUSTER_1,Гідростанція
+C_EL_3,C_CLUSTER_1,Система охолодження
+C_EL_4,C_CLUSTER_2,Програмований логічний контролер
+C_EL_5,C_CLUSTER_2,Система SCADA
+C_EL_6,C_CLUSTER_3,Протокол Modbus TCP
+C_EL_7,C_CLUSTER_4,Датчик температури
