@@ -1,0 +1,35 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ind: <http://example.org/industrial-automation#> .
+
+ind:Scheme a skos:ConceptScheme ;
+    rdfs:label "Таксономія промислової автоматизації"@uk .
+
+ind:ROOT a skos:Concept ;
+    skos:inScheme ind:Scheme ;
+    skos:prefLabel "Промислова автоматизація"@uk ;
+    skos:definition "Базовий вузол предметної області АСКТП."@uk .
+
+ind:EQ_ROOT a skos:Concept ;
+    skos:inScheme ind:Scheme ;
+    skos:prefLabel "Обладнання та механізми"@uk ;
+    skos:broader ind:ROOT ;
+    skos:definition "Фізичні вузли та механічні приводи верстатів."@uk .
+
+ind:CNC_1 a skos:Concept ;
+    skos:inScheme ind:Scheme ;
+    skos:prefLabel "Верстати ЧПК"@uk ;
+    skos:altLabel "CNC"@uk ;
+    skos:broader ind:EQ_ROOT ;
+    skos:definition "Верстати з числовим програмним керуванням."@uk ;
+    skos:exactMatch <http://purl.org/NET/cmo#CNC> .
+
+ind:PLC_1 a skos:Concept ;
+    skos:inScheme ind:Scheme ;
+    skos:prefLabel "Програмований логічний контролер"@uk ;
+    skos:altLabel "ПЛК"@uk, "PLC"@uk ;
+    skos:broader ind:ROOT ;
+    skos:definition "Мікропроцесорний пристрій автоматизації."@uk ;
+    skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_33120> .
