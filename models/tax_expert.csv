@@ -1,0 +1,31 @@
+id,parent_id,label
+ROOT,None,Промислова автоматизація
+EQ_ROOT,ROOT,Обладнання та механізми
+SW_ROOT,ROOT,Програмне забезпечення та SCADA
+NW_ROOT,ROOT,Мережі та комунікації
+MET_ROOT,ROOT,Датчики та метрологія
+CNC_1,EQ_ROOT,Верстати ЧПК
+SPINDLE_1,CNC_1,Шпиндель
+SUPPORT_1,CNC_1,Супорт
+TURRET_1,CNC_1,Револьверна головка
+HYD_1,EQ_ROOT,Гідростанція
+PNEUM_1,EQ_ROOT,Пневморозподільник
+CHIP_1,EQ_ROOT,Транспортер стружки
+COOL_1,EQ_ROOT,Система охолодження
+PLC_1,SW_ROOT,Програмований логічний контролер
+SCADA_1,SW_ROOT,Система SCADA
+HMI_1,SW_ROOT,Інтерфейс HMI
+EDGE_1,SW_ROOT,Периферійні обчислення
+TWIN_1,SW_ROOT,Цифровий двійник
+MODBUS_1,NW_ROOT,Протокол Modbus TCP
+PROFINET_1,NW_ROOT,Протокол Profinet
+GW_1,NW_ROOT,Шлюз даних
+TEMP_SENS,MET_ROOT,Датчик температури
+PRESS_SENS,MET_ROOT,Датчик тиску
+VIB_SENS,MET_ROOT,Вибродатчик
+INTERLOCK_1,ROOT,Аварійне блокування
+REF_PT_1,ROOT,Референтна точка
+ZOR_1,ROOT,Охолоджувальна рідина
+PANEL_1,ROOT,Електрощитова
+ALARM_WARN,ROOT,Попереджувальна тривога
+ALARM_CRIT,ROOT,Критична тривога
