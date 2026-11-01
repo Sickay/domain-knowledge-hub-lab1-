@@ -1,0 +1,166 @@
+{
+  "domain": "Industrial Automation Knowledge Base",
+  "version": "1.0.0",
+  "rules": [
+    {
+      "id": "RULE-001",
+      "if": ["lubrication_level == 'low'"],
+      "then": ["machine_status = 'blocked'", "error_msg = 'Рівень мастила нижче норми'"],
+      "exception": "Якщо проводиться планове технічне обслуговування із заповненим нарядом-допуском.",
+      "source_quote": "Рівень мастила в гідросистемі ЧПК повинен перевірятися щозміни перед запуском.",
+      "status": "verified"
+    },
+    {
+      "id": "RULE-002",
+      "if": ["spindle_temp > 75"],
+      "then": ["emergency_stop = true", "cooling_system = 'max'"],
+      "exception": "Виключення відсутні для критичного температурного порогу.",
+      "source_quote": "У разі підвищення температури підшипника шпинделя понад 75°C спрацьовує аварійне блокування.",
+      "status": "verified"
+    },
+    {
+      "id": "RULE-003",
+      "if": ["air_pressure < 0.45", "air_pressure > 0.65"],
+      "then": ["pneumatic_alarm = true", "operation_allowed = false"],
+      "exception": "Під час короткочасних пускових перехідних процесів (до 2 секунд).",
+      "source_quote": "Тиск повітря в пневмосистемі повинен бути в межах 0.5 - 0.6 МПа.",
+      "status": "verified"
+    },
+    {
+      "id": "RULE-004",
+      "if": ["coolant_flow < 'critical'"],
+      "then": ["feed_rate_modifier = 0.5", "warning_flag = true"],
+      "exception": "Якщо використовується сухе різання за спеціальною технологічною карткою.",
+      "source_quote": "У разі падіння витрати ЗОР нижче норми шпиндель знижує подачу на 50%.",
+      "status": "verified"
+    },
+    {
+      "id": "RULE-005",
+      "if": ["e_stop_pressed == true"],
+      "then": ["power_relays = 'disconnected'", "machine_halt = true"],
+      "exception": "Жодних винятків для грибкової кнопки аварійного зупину.",
+      "source_quote": "Аварійна кнопка (E-Stop) має фізично розривати ланцюг живлення котушок пускачів.",
+      "status": "verified"
+    },
+    {
+      "id": "RULE-006",
+      "if": ["panel_temperature > 35"],
+      "then": ["backup_ac = 'on'", "temperature_alert = true"],
+      "exception": "Якщо зовнішня температура довкілля нижче +10°C і шафа відкрита для вентиляції.",
+      "source_quote": "Температура в електрощитовій не повинна перевищувати +35°C для запобігання збоїв контролерів.",
+      "status": "verified"
+    },
+    {
+      "id": "RULE-007",
+      "if": ["axis_homed == false", "startup_initiated == true"],
+      "then": ["motion_command = 'rejected'", "error_msg = 'Необхідно виконати вихід у нуль'"],
+      "exception": "Під час виконання діагностичного ручного переміщення сервісним інженером.",
+      "source_quote": "Виконати вихід по осях X та Z у референтні точки.",
+      "status": "verified"
+    },
+    {
+      "id": "RULE-008",
+      "if": ["calibration_days_elapsed > 180"],
+      "then": ["sensor_status = 'expired'", "maintenance_required = true"],
+      "exception": "Якщо датчик пройшов позапланову лабораторну перевірку раніше терміну.",
+      "source_quote": "Калібрування термопар виконується кожні 6 місяців еталонним калібратором.",
+      "status": "verified"
+    },
+    {
+      "id": "RULE-009",
+      "if": ["db_backup_time == '02:00'"],
+      "then": ["scada_db_archive = 'started'", "nas_transfer = true"],
+      "exception": "Якщо виконується екстрене оновлення програмного забезпечення SCADA вночі.",
+      "source_quote": "Резервне копіювання баз даних SCADA виконується щодня о 02:00 ночі автоматично.",
+      "status": "verified"
+    },
+    {
+      "id": "RULE-010",
+      "if": ["plc_config_modified == true", "digital_sign_present == false"],
+      "then": ["config_save = 'rejected'", "security_alarm = true"],
+      "exception": "Під час первинного лабораторного програмування на ізольованому стенді без підключення до мережі цеху.",
+      "source_quote": "Усі зміни в конфігурації ПЛК повинні логуватися із зазначенням цифрового підпису інженера.",
+      "status": "verified"
+    },
+    {
+      "id": "RULE-011",
+      "if": ["operator_action == 'reset_critical_alarm'", "engineer_approved == false"],
+      "then": ["reset_command = 'blocked'", "safety_violation = true"],
+      "exception": "Якщо надійшов прямий телефонний наказ головного інженера зі спеціальним кодом підтвердження.",
+      "source_quote": "Оператор має право скидати критичну аварію без узгодження з інженером АСКТП.",
+      "status": "draft"
+    },
+    {
+      "id": "RULE-012",
+      "if": ["machine_mode == 'idle'"],
+      "then": ["sensor_poll_rate = 'low_10hz'"],
+      "exception": "Якщо активовано режим прискореного перевірочного тестування.",
+      "source_quote": "Частота опитування датчиків вібрації може бути знижена до 10 Гц в режимі очікування верстата.",
+      "status": "verified"
+    },
+    {
+      "id": "RULE-013",
+      "if": ["hydraulic_power_lost == true"],
+      "then": ["clamp_pressure = 'released_by_backup'", "spindle_lock = true"],
+      "exception": "Виключення відсутні для аварійного зникнення живлення.",
+      "source_quote": "При зникненні живлення гідростанції заготовка має бути автоматично розтиснена.",
+      "status": "verified"
+    },
+    {
+      "id": "RULE-014",
+      "if": ["spindle_load > 'max_limit'"],
+      "then": ["safety_clutch = 'tripped'", "feed_halt = true"],
+      "exception": "Під час короткочасних пікових навантажень менше 0.1 секунди.",
+      "source_quote": "При перевищенні максимального навантаження на супорт спрацьовує запобіжна муфта.",
+      "status": "verified"
+    },
+    {
+      "id": "RULE-015",
+      "if": ["new_algorithm_tested_in_twin == false"],
+      "then": ["plc_deployment = 'blocked'", "error_msg = 'Потрібен тест у цифровому двійнику'"],
+      "exception": "Для міноритарних виправлень коментарів у документації ПЛК.",
+      "source_quote": "Всі нові алгоритми керування верстатом обов'язково тестуються у середовищі цифрового двійника.",
+      "status": "verified"
+    },
+    {
+      "id": "RULE-016",
+      "if": ["ai_autonomous_mode == true"],
+      "then": ["safety_override = 'enabled'"],
+      "exception": "Жодних винятків, оскільки правило є експериментальною гіпотезою.",
+      "source_quote": "",
+      "status": "draft"
+    },
+    {
+      "id": "RULE-017",
+      "if": ["wireless_power_active == true"],
+      "then": ["efficiency_loss_alert = true"],
+      "exception": "",
+      "source_quote": "",
+      "status": "draft"
+    },
+    {
+      "id": "RULE-018",
+      "if": ["quantum_sensor_signal == 'unstable'"],
+      "then": ["calibration_fallback = true"],
+      "exception": "",
+      "source_quote": "",
+      "status": "draft"
+    },
+    {
+      "id": "RULE-019",
+      "if": ["blockchain_ledger_delayed == true"],
+      "then": ["cycle_warning = true"],
+      "exception": "",
+      "source_quote": "",
+      "status": "draft"
+    },
+    {
+      "id": "RULE-020",
+      "if": ["neuromorphic_chip_overheated == true"],
+      "then": ["fallback_to_standard_plc = true"],
+      "exception": "",
+      "source_quote": "",
+      "status": "draft"
+    }
+  ]
+}
