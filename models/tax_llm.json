@@ -1,0 +1,16 @@
+{
+  "principle_of_division": "Функціонально-ієрархічна декомпозиція систем промислової автоматизації (Апаратний рівень, Рівень керування та ПЗ, Комунікаційний рівень, Польові вимірювання)",
+  "nodes": [
+    {"id": "L_ROOT", "parent_id": null, "label": "Промислова автоматизація"},
+    {"id": "L_HW", "parent_id": "L_ROOT", "label": "Апаратне забезпечення"},
+    {"id": "L_SW", "parent_id": "L_ROOT", "label": "Програмне забезпечення"},
+    {"id": "L_NET", "parent_id": "L_ROOT", "label": "Комунікаційні мережі"},
+    {"id": "L_SENS", "parent_id": "L_ROOT", "label": "Сенсорика і вимірювання"},
+    {"id": "L_CNC", "parent_id": "L_HW", "label": "Верстати ЧПК"},
+    {"id": "L_HYD", "parent_id": "L_HW", "label": "Гідравлічні приводи"},
+    {"id": "L_PLC", "parent_id": "L_SW", "label": "ПЛК контролери"},
+    {"id": "L_SCADA", "parent_id": "L_SW", "label": "SCADA системи"},
+    {"id": "L_NET_MOD", "parent_id": "L_NET", "label": "Протоколи зв'язку"},
+    {"id": "L_MET", "parent_id": "L_SENS", "label": "Датчики та сенсори"}
+  ]
+}
