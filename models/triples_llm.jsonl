@@ -1,0 +1,5 @@
+{"subject": "Система SCADA", "predicate": "monitors", "object": "Датчик температури", "evidence": "Система диспетчерського керування здійснює моніторинг параметрів датчиків у реальному часі.", "status": "verified"}
+{"subject": "Програмований логічний контролер", "predicate": "controls", "object": "Гідростанція", "evidence": "ПЛК керує роботою гідравлічного агрегату через дискретні виходи.", "status": "verified"}
+{"subject": "Шпиндель", "predicate": "part-of", "object": "Верстати ЧПК", "evidence": "Головний вал є невіддільною частиною конструкції токарного верстата.", "status": "verified"}
+{"subject": "Перевищення температури", "predicate": "triggers", "object": "Аварійне блокування", "evidence": "У разі підвищення температури понад норму спрацьовує захисний інтерлок.", "status": "verified"}
+{"subject": "Протокол Modbus TCP", "predicate": "communicates-via", "object": "Промислові мережі", "evidence": "Передача пакетів даних між вузлами здійснюється за протоколом Modbus TCP.", "status": "verified"}

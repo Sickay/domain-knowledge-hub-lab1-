@@ -1,0 +1,6 @@
+subject,predicate,object,source,status
+"Система SCADA","monitors","Датчик температури","IEC 61508","verified"
+"Програмований логічний контролер","controls","Гідростанція","IEC 61131","verified"
+"Шпиндель","part-of","Верстати ЧПК","ГОСТ 18097","verified"
+"Аварійне блокування","protects","Електрообладнання","ISO 13849","verified"
+"Протокол Modbus TCP","communicates-via","Промислові мережі","Modbus Spec","verified"
