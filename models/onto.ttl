@@ -1,0 +1,170 @@
+@prefix : <http://example.org/industrial-automation#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <http://example.org/industrial-automation#> .
+
+<http://example.org/industrial-automation> rdf:type owl:Ontology ;
+                                            dcterms:creator "Knowledge Engineer"@uk ;
+                                            dcterms:title "Industrial Automation Ontology"@en ;
+                                            owl:versionInfo "1.0.0" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.org/industrial-automation#controls
+:controls rdf:type owl:ObjectProperty ,
+                   owl:TransitiveProperty ;
+          rdfs:domain :PLCController ;
+          rdfs:range :IndustrialEquipment .
+
+
+###  http://example.org/industrial-automation#hasPart
+:hasPart rdf:type owl:ObjectProperty ,
+                  owl:TransitiveProperty .
+
+
+###  http://example.org/industrial-automation#monitoredBy
+:monitoredBy rdf:type owl:ObjectProperty ;
+             owl:inverseOf :monitors .
+
+
+###  http://example.org/industrial-automation#monitors
+:monitors rdf:type owl:ObjectProperty ;
+          rdfs:domain :SoftwareSystem ;
+          rdfs:range :Sensor .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.org/industrial-automation#hasAxisCount
+:hasAxisCount rdf:type owl:DatatypeProperty ;
+              rdfs:domain :MachineTool ;
+              rdfs:range xsd:integer .
+
+
+###  http://example.org/industrial-automation#hasId
+:hasId rdf:type owl:DatatypeProperty ;
+       rdfs:domain owl:Thing ;
+       rdfs:range xsd:string .
+
+
+###  http://example.org/industrial-automation#hasPressure
+:hasPressure rdf:type owl:DatatypeProperty ;
+             rdfs:domain :IndustrialEquipment ;
+             rdfs:range xsd:float .
+
+
+###  http://example.org/industrial-automation#hasStatus
+:hasStatus rdf:type owl:DatatypeProperty ;
+           rdfs:domain owl:Thing ;
+           rdfs:range xsd:string .
+
+
+###  http://example.org/industrial-automation#hasTemp
+:hasTemp rdf:type owl:DatatypeProperty ;
+         rdfs:domain :IndustrialEquipment ;
+         rdfs:range xsd:float .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/industrial-automation#CNC16K20F3
+:CNC16K20F3 rdf:type owl:Class ;
+            rdfs:subClassOf :MachineTool ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasPart ;
+                              owl:someValuesFrom :Spindle
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasAxisCount ;
+                              owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                              owl:onDataRange xsd:integer
+                            ] .
+
+
+###  http://example.org/industrial-automation#CommunicationNetwork
+:CommunicationNetwork rdf:type owl:Class .
+
+
+###  http://example.org/industrial-automation#IndustrialEquipment
+:IndustrialEquipment rdf:type owl:Class .
+
+
+###  http://example.org/industrial-automation#MachineTool
+:MachineTool rdf:type owl:Class ;
+             rdfs:subClassOf :IndustrialEquipment .
+
+
+###  http://example.org/industrial-automation#PLCController
+:PLCController rdf:type owl:Class ;
+               rdfs:subClassOf :SoftwareSystem .
+
+
+###  http://example.org/industrial-automation#PressureSensor
+:PressureSensor rdf:type owl:Class ;
+                rdfs:subClassOf :Sensor .
+
+
+###  http://example.org/industrial-automation#SafetyInterlock
+:SafetyInterlock rdf:type owl:Class .
+
+
+###  http://example.org/industrial-automation#Sensor
+:Sensor rdf:type owl:Class .
+
+
+###  http://example.org/industrial-automation#SoftwareSystem
+:SoftwareSystem rdf:type owl:Class .
+
+
+###  http://example.org/industrial-automation#Spindle
+:Spindle rdf:type owl:Class ;
+         rdfs:subClassOf :IndustrialEquipment .
+
+
+###  http://example.org/industrial-automation#TemperatureSensor
+:TemperatureSensor rdf:type owl:Class ;
+                   rdfs:subClassOf :Sensor .
+
+
+###  http://example.org/industrial-automation#VibrationSensor
+:VibrationSensor rdf:type owl:Class ;
+                 rdfs:subClassOf :Sensor .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CommunicationNetwork
+                :IndustrialEquipment
+                :SafetyInterlock
+                :Sensor
+                :SoftwareSystem
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
