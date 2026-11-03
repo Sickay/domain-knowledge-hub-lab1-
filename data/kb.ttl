@@ -1,0 +1,115 @@
+@prefix : <http://www.semanticweb.org/ontologies/2026/automation#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Класи
+:IndustrialEquipment rdf:type owl:Class .
+:MachineTool rdf:type owl:Class ;
+    rdfs:subClassOf :IndustrialEquipment .
+:CNC16K20F3 rdf:type owl:Class ;
+    rdfs:subClassOf :MachineTool .
+:Spindle rdf:type owl:Class ;
+    rdfs:subClassOf :IndustrialEquipment .
+:Sensor rdf:type owl:Class .
+:TemperatureSensor rdf:type owl:Class ;
+    rdfs:subClassOf :Sensor .
+:PressureSensor rdf:type owl:Class ;
+    rdfs:subClassOf :Sensor .
+:SoftwareSystem rdf:type owl:Class .
+:PLCController rdf:type owl:Class ;
+    rdfs:subClassOf :SoftwareSystem .
+
+# Властивості
+:hasId rdf:type owl:DatatypeProperty ;
+    rdfs:domain :IndustrialEquipment ;
+    rdfs:range xsd:string .
+
+:hasAxisCount rdf:type owl:DatatypeProperty ;
+    rdfs:domain :MachineTool ;
+    rdfs:range xsd:integer .
+
+:hasTemp rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Sensor ;
+    rdfs:range xsd:decimal .
+
+:hasPressure rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Sensor ;
+    rdfs:range xsd:decimal .
+
+:hasStatus rdf:type owl:DatatypeProperty ;
+    rdfs:domain :IndustrialEquipment ;
+    rdfs:range xsd:string .
+
+:isControlledBy rdf:type owl:ObjectProperty ;
+    rdfs:domain :IndustrialEquipment ;
+    rdfs:range :PLCController .
+
+# Індивіди
+:PLC_01 rdf:type :PLCController ;
+    :hasId "PLC-01" ;
+    :hasStatus "active" .
+
+:CNC_01 rdf:type :CNC16K20F3 ;
+    :hasId "CNC-01" ;
+    :hasAxisCount 3 ;
+    :hasStatus "active" ;
+    :isControlledBy :PLC_01 .
+
+:Spindle_01 rdf:type :Spindle ;
+    :hasId "Spindle-01" ;
+    :hasStatus "active" ;
+    :isControlledBy :PLC_01 .
+
+:TS_01 rdf:type :TemperatureSensor ;
+    :hasId "TS-01" ;
+    :hasTemp 68.5 ;
+    :hasStatus "normal" .
+
+:PS_01 rdf:type :PressureSensor ;
+    :hasId "PS-01" ;
+    :hasPressure 0.55 ;
+    :hasStatus "normal" .
+
+:CNC_02 rdf:type :CNC16K20F3 ;
+    :hasId "CNC-02" ;
+    :hasAxisCount 3 ;
+    :hasStatus "active" ;
+    :isControlledBy :PLC_01 .
+
+:Spindle_02 rdf:type :Spindle ;
+    :hasId "Spindle-02" ;
+    :hasStatus "overheated" ;
+    :isControlledBy :PLC_01 .
+
+:TS_02 rdf:type :TemperatureSensor ;
+    :hasId "TS-02" ;
+    :hasTemp 82.4 ;
+    :hasStatus "critical" .
+
+:PS_02 rdf:type :PressureSensor ;
+    :hasId "PS-02" ;
+    :hasPressure 0.42 ;
+    :hasStatus "warning" .
+
+:CNC_03 rdf:type :CNC16K20F3 ;
+    :hasId "CNC-03" ;
+    :hasAxisCount 4 ;
+    :hasStatus "maintenance" ;
+    :isControlledBy :PLC_01 .
+
+:Spindle_03 rdf:type :Spindle ;
+    :hasId "Spindle-03" ;
+    :hasStatus "active" ;
+    :isControlledBy :PLC_01 .
+
+:TS_03 rdf:type :TemperatureSensor ;
+    :hasId "TS-03" ;
+    :hasTemp 45.0 ;
+    :hasStatus "normal" .
+
+:PS_03 rdf:type :PressureSensor ;
+    :hasId "PS-03" ;
+    :hasPressure 0.60 ;
+    :hasStatus "normal" .
