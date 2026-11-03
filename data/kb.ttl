@@ -6,110 +6,110 @@
 
 # Класи
 :IndustrialEquipment rdf:type owl:Class .
-:MachineTool rdf:type owl:Class ;
-    rdfs:subClassOf :IndustrialEquipment .
-:CNC16K20F3 rdf:type owl:Class ;
-    rdfs:subClassOf :MachineTool .
-:Spindle rdf:type owl:Class ;
-    rdfs:subClassOf :IndustrialEquipment .
+:MachineTool rdf:type owl:Class ; rdfs:subClassOf :IndustrialEquipment .
+:CNC16K20F3 rdf:type owl:Class ; rdfs:subClassOf :MachineTool .
+:Spindle rdf:type owl:Class ; rdfs:subClassOf :IndustrialEquipment .
 :Sensor rdf:type owl:Class .
-:TemperatureSensor rdf:type owl:Class ;
-    rdfs:subClassOf :Sensor .
-:PressureSensor rdf:type owl:Class ;
-    rdfs:subClassOf :Sensor .
+:TemperatureSensor rdf:type owl:Class ; rdfs:subClassOf :Sensor .
+:PressureSensor rdf:type owl:Class ; rdfs:subClassOf :Sensor .
+:VibrationSensor rdf:type owl:Class ; rdfs:subClassOf :Sensor .
 :SoftwareSystem rdf:type owl:Class .
-:PLCController rdf:type owl:Class ;
-    rdfs:subClassOf :SoftwareSystem .
+:PLCController rdf:type owl:Class ; rdfs:subClassOf :SoftwareSystem .
 
 # Властивості
-:hasId rdf:type owl:DatatypeProperty ;
-    rdfs:domain :IndustrialEquipment ;
-    rdfs:range xsd:string .
+:hasId rdf:type owl:DatatypeProperty ; rdfs:domain :IndustrialEquipment ; rdfs:range xsd:string .
+:hasAxisCount rdf:type owl:DatatypeProperty ; rdfs:domain :MachineTool ; rdfs:range xsd:integer .
+:hasTemp rdf:type owl:DatatypeProperty ; rdfs:domain :Sensor ; rdfs:range xsd:decimal .
+:hasPressure rdf:type owl:DatatypeProperty ; rdfs:domain :Sensor ; rdfs:range xsd:decimal .
+:hasVibration rdf:type owl:DatatypeProperty ; rdfs:domain :Sensor ; rdfs:range xsd:decimal .
+:hasStatus rdf:type owl:DatatypeProperty ; rdfs:domain :IndustrialEquipment ; rdfs:range xsd:string .
+:isControlledBy rdf:type owl:ObjectProperty ; rdfs:domain :IndustrialEquipment ; rdfs:range :PLCController .
 
-:hasAxisCount rdf:type owl:DatatypeProperty ;
-    rdfs:domain :MachineTool ;
-    rdfs:range xsd:integer .
+# Генерація індивідів для досягнення >=300 триплетів
+:PLC_01 rdf:type :PLCController ; :hasId "PLC-01" ; :hasStatus "active" .
+:PLC_02 rdf:type :PLCController ; :hasId "PLC-02" ; :hasStatus "active" .
 
-:hasTemp rdf:type owl:DatatypeProperty ;
-    rdfs:domain :Sensor ;
-    rdfs:range xsd:decimal .
+# Блок верстатів та датчиків 1-10
+:CNC_01 rdf:type :CNC16K20F3 ; :hasId "CNC-01" ; :hasAxisCount 3 ; :hasStatus "active" ; :isControlledBy :PLC_01 .
+:Spindle_01 rdf:type :Spindle ; :hasId "Spindle-01" ; :hasStatus "active" ; :isControlledBy :PLC_01 .
+:TS_01 rdf:type :TemperatureSensor ; :hasId "TS-01" ; :hasTemp 68.5 ; :hasStatus "normal" .
+:PS_01 rdf:type :PressureSensor ; :hasId "PS-01" ; :hasPressure 0.55 ; :hasStatus "normal" .
+:VS_01 rdf:type :VibrationSensor ; :hasId "VS-01" ; :hasVibration 1.2 ; :hasStatus "normal" .
 
-:hasPressure rdf:type owl:DatatypeProperty ;
-    rdfs:domain :Sensor ;
-    rdfs:range xsd:decimal .
+:CNC_02 rdf:type :CNC16K20F3 ; :hasId "CNC-02" ; :hasAxisCount 3 ; :hasStatus "active" ; :isControlledBy :PLC_01 .
+:Spindle_02 rdf:type :Spindle ; :hasId "Spindle-02" ; :hasStatus "overheated" ; :isControlledBy :PLC_01 .
+:TS_02 rdf:type :TemperatureSensor ; :hasId "TS-02" ; :hasTemp 82.4 ; :hasStatus "critical" .
+:PS_02 rdf:type :PressureSensor ; :hasId "PS-02" ; :hasPressure 0.42 ; :hasStatus "warning" .
+:VS_02 rdf:type :VibrationSensor ; :hasId "VS-02" ; :hasVibration 3.5 ; :hasStatus "warning" .
 
-:hasStatus rdf:type owl:DatatypeProperty ;
-    rdfs:domain :IndustrialEquipment ;
-    rdfs:range xsd:string .
+:CNC_03 rdf:type :CNC16K20F3 ; :hasId "CNC-03" ; :hasAxisCount 4 ; :hasStatus "maintenance" ; :isControlledBy :PLC_01 .
+:Spindle_03 rdf:type :Spindle ; :hasId "Spindle-03" ; :hasStatus "active" ; :isControlledBy :PLC_01 .
+:TS_03 rdf:type :TemperatureSensor ; :hasId "TS-03" ; :hasTemp 45.0 ; :hasStatus "normal" .
+:PS_03 rdf:type :PressureSensor ; :hasId "PS-03" ; :hasPressure 0.60 ; :hasStatus "normal" .
+:VS_03 rdf:type :VibrationSensor ; :hasId "VS-03" ; :hasVibration 0.9 ; :hasStatus "normal" .
 
-:isControlledBy rdf:type owl:ObjectProperty ;
-    rdfs:domain :IndustrialEquipment ;
-    rdfs:range :PLCController .
+:CNC_04 rdf:type :CNC16K20F3 ; :hasId "CNC-04" ; :hasAxisCount 4 ; :hasStatus "active" ; :isControlledBy :PLC_02 .
+:Spindle_04 rdf:type :Spindle ; :hasId "Spindle-04" ; :hasStatus "active" ; :isControlledBy :PLC_02 .
+:TS_04 rdf:type :TemperatureSensor ; :hasId "TS-04" ; :hasTemp 55.2 ; :hasStatus "normal" .
+:PS_04 rdf:type :PressureSensor ; :hasId "PS-04" ; :hasPressure 0.50 ; :hasStatus "normal" .
+:VS_04 rdf:type :VibrationSensor ; :hasId "VS-04" ; :hasVibration 1.1 ; :hasStatus "normal" .
 
-# Індивіди
-:PLC_01 rdf:type :PLCController ;
-    :hasId "PLC-01" ;
-    :hasStatus "active" .
+:CNC_05 rdf:type :CNC16K20F3 ; :hasId "CNC-05" ; :hasAxisCount 5 ; :hasStatus "active" ; :isControlledBy :PLC_02 .
+:Spindle_05 rdf:type :Spindle ; :hasId "Spindle-05" ; :hasStatus "active" ; :isControlledBy :PLC_02 .
+:TS_05 rdf:type :TemperatureSensor ; :hasId "TS-05" ; :hasTemp 60.1 ; :hasStatus "normal" .
+:PS_05 rdf:type :PressureSensor ; :hasId "PS-05" ; :hasPressure 0.58 ; :hasStatus "normal" .
+:VS_05 rdf:type :VibrationSensor ; :hasId "VS-05" ; :hasVibration 1.0 ; :hasStatus "normal" .
 
-:CNC_01 rdf:type :CNC16K20F3 ;
-    :hasId "CNC-01" ;
-    :hasAxisCount 3 ;
-    :hasStatus "active" ;
-    :isControlledBy :PLC_01 .
+:CNC_06 rdf:type :CNC16K20F3 ; :hasId "CNC-06" ; :hasAxisCount 3 ; :hasStatus "maintenance" ; :isControlledBy :PLC_02 .
+:Spindle_06 rdf:type :Spindle ; :hasId "Spindle-06" ; :hasStatus "maintenance" ; :isControlledBy :PLC_02 .
+:TS_06 rdf:type :TemperatureSensor ; :hasId "TS-06" ; :hasTemp 30.0 ; :hasStatus "normal" .
+:PS_06 rdf:type :PressureSensor ; :hasId "PS-06" ; :hasPressure 0.20 ; :hasStatus "low" .
+:VS_06 rdf:type :VibrationSensor ; :hasId "VS-06" ; :hasVibration 0.2 ; :hasStatus "normal" .
 
-:Spindle_01 rdf:type :Spindle ;
-    :hasId "Spindle-01" ;
-    :hasStatus "active" ;
-    :isControlledBy :PLC_01 .
+:CNC_07 rdf:type :CNC16K20F3 ; :hasId "CNC-07" ; :hasAxisCount 3 ; :hasStatus "active" ; :isControlledBy :PLC_01 .
+:Spindle_07 rdf:type :Spindle ; :hasId "Spindle-07" ; :hasStatus "active" ; :isControlledBy :PLC_01 .
+:TS_07 rdf:type :TemperatureSensor ; :hasId "TS-07" ; :hasTemp 71.2 ; :hasStatus "warning" .
+:PS_07 rdf:type :PressureSensor ; :hasId "PS-07" ; :hasPressure 0.51 ; :hasStatus "normal" .
+:VS_07 rdf:type :VibrationSensor ; :hasId "VS-07" ; :hasVibration 1.8 ; :hasStatus "normal" .
 
-:TS_01 rdf:type :TemperatureSensor ;
-    :hasId "TS-01" ;
-    :hasTemp 68.5 ;
-    :hasStatus "normal" .
+:CNC_08 rdf:type :CNC16K20F3 ; :hasId "CNC-08" ; :hasAxisCount 4 ; :hasStatus "active" ; :isControlledBy :PLC_01 .
+:Spindle_08 rdf:type :Spindle ; :hasId "Spindle-08" ; :hasStatus "active" ; :isControlledBy :PLC_01 .
+:TS_08 rdf:type :TemperatureSensor ; :hasId "TS-08" ; :hasTemp 65.4 ; :hasStatus "normal" .
+:PS_08 rdf:type :PressureSensor ; :hasId "PS-08" ; :hasPressure 0.49 ; :hasStatus "normal" .
+:VS_08 rdf:type :VibrationSensor ; :hasId "VS-08" ; :hasVibration 1.4 ; :hasStatus "normal" .
 
-:PS_01 rdf:type :PressureSensor ;
-    :hasId "PS-01" ;
-    :hasPressure 0.55 ;
-    :hasStatus "normal" .
+:CNC_09 rdf:type :CNC16K20F3 ; :hasId "CNC-09" ; :hasAxisCount 5 ; :hasStatus "active" ; :isControlledBy :PLC_02 .
+:Spindle_09 rdf:type :Spindle ; :hasId "Spindle-09" ; :hasStatus "overheated" ; :isControlledBy :PLC_02 .
+:TS_09 rdf:type :TemperatureSensor ; :hasId "TS-09" ; :hasTemp 88.9 ; :hasStatus "critical" .
+:PS_09 rdf:type :PressureSensor ; :hasId "PS-09" ; :hasPressure 0.35 ; :hasStatus "warning" .
+:VS_09 rdf:type :VibrationSensor ; :hasId "VS-09" ; :hasVibration 4.1 ; :hasStatus "critical" .
 
-:CNC_02 rdf:type :CNC16K20F3 ;
-    :hasId "CNC-02" ;
-    :hasAxisCount 3 ;
-    :hasStatus "active" ;
-    :isControlledBy :PLC_01 .
+:CNC_10 rdf:type :CNC16K20F3 ; :hasId "CNC-10" ; :hasAxisCount 3 ; :hasStatus "active" ; :isControlledBy :PLC_02 .
+:Spindle_10 rdf:type :Spindle ; :hasId "Spindle-10" ; :hasStatus "active" ; :isControlledBy :PLC_02 .
+:TS_10 rdf:type :TemperatureSensor ; :hasId "TS-10" ; :hasTemp 50.5 ; :hasStatus "normal" .
+:PS_10 rdf:type :PressureSensor ; :hasId "PS-10" ; :hasPressure 0.53 ; :hasStatus "normal" .
+:VS_10 rdf:type :VibrationSensor ; :hasId "VS-10" ; :hasVibration 1.0 ; :hasStatus "normal" .
 
-:Spindle_02 rdf:type :Spindle ;
-    :hasId "Spindle-02" ;
-    :hasStatus "overheated" ;
-    :isControlledBy :PLC_01 .
+:CNC_11 rdf:type :CNC16K20F3 ; :hasId "CNC-11" ; :hasAxisCount 4 ; :hasStatus "active" ; :isControlledBy :PLC_01 .
+:Spindle_11 rdf:type :Spindle ; :hasId "Spindle-11" ; :hasStatus "active" ; :isControlledBy :PLC_01 .
+:TS_11 rdf:type :TemperatureSensor ; :hasId "TS-11" ; :hasTemp 62.1 ; :hasStatus "normal" .
+:PS_11 rdf:type :PressureSensor ; :hasId "PS-11" ; :hasPressure 0.52 ; :hasStatus "normal" .
+:VS_11 rdf:type :VibrationSensor ; :hasId "VS-11" ; :hasVibration 1.3 ; :hasStatus "normal" .
 
-:TS_02 rdf:type :TemperatureSensor ;
-    :hasId "TS-02" ;
-    :hasTemp 82.4 ;
-    :hasStatus "critical" .
+:CNC_12 rdf:type :CNC16K20F3 ; :hasId "CNC-12" ; :hasAxisCount 3 ; :hasStatus "active" ; :isControlledBy :PLC_02 .
+:Spindle_12 rdf:type :Spindle ; :hasId "Spindle-12" ; :hasStatus "active" ; :isControlledBy :PLC_02 .
+:TS_12 rdf:type :TemperatureSensor ; :hasId "TS-12" ; :hasTemp 58.4 ; :hasStatus "normal" .
+:PS_12 rdf:type :PressureSensor ; :hasId "PS-12" ; :hasPressure 0.48 ; :hasStatus "normal" .
+:VS_12 rdf:type :VibrationSensor ; :hasId "VS-12" ; :hasVibration 1.1 ; :hasStatus "normal" .
 
-:PS_02 rdf:type :PressureSensor ;
-    :hasId "PS-02" ;
-    :hasPressure 0.42 ;
-    :hasStatus "warning" .
+:CNC_13 rdf:type :CNC16K20F3 ; :hasId "CNC-13" ; :hasAxisCount 4 ; :hasStatus "active" ; :isControlledBy :PLC_01 .
+:Spindle_13 rdf:type :Spindle ; :hasId "Spindle-13" ; :hasStatus "active" ; :isControlledBy :PLC_01 .
+:TS_13 rdf:type :TemperatureSensor ; :hasId "TS-13" ; :hasTemp 63.2 ; :hasStatus "normal" .
+:PS_13 rdf:type :PressureSensor ; :hasId "PS-13" ; :hasPressure 0.54 ; :hasStatus "normal" .
+:VS_13 rdf:type :VibrationSensor ; :hasId "VS-13" ; :hasVibration 1.2 ; :hasStatus "normal" .
 
-:CNC_03 rdf:type :CNC16K20F3 ;
-    :hasId "CNC-03" ;
-    :hasAxisCount 4 ;
-    :hasStatus "maintenance" ;
-    :isControlledBy :PLC_01 .
-
-:Spindle_03 rdf:type :Spindle ;
-    :hasId "Spindle-03" ;
-    :hasStatus "active" ;
-    :isControlledBy :PLC_01 .
-
-:TS_03 rdf:type :TemperatureSensor ;
-    :hasId "TS-03" ;
-    :hasTemp 45.0 ;
-    :hasStatus "normal" .
-
-:PS_03 rdf:type :PressureSensor ;
-    :hasId "PS-03" ;
-    :hasPressure 0.60 ;
-    :hasStatus "normal" .
+:CNC_14 rdf:type :CNC16K20F3 ; :hasId "CNC-14" ; :hasAxisCount 3 ; :hasStatus "active" ; :isControlledBy :PLC_02 .
+:Spindle_14 rdf:type :Spindle ; :hasId "Spindle-14" ; :hasStatus "active" ; :isControlledBy :PLC_02 .
+:TS_14 rdf:type :TemperatureSensor ; :hasId "TS-14" ; :hasTemp 57.9 ; :hasStatus "normal" .
+:PS_14 rdf:type :PressureSensor ; :hasId "PS-14" ; :hasPressure 0.49 ; :hasStatus "normal" .
+:VS_14 rdf:type :VibrationSensor ; :hasId "VS-14" ; :hasVibration 1.0 ; :hasStatus "normal" .
