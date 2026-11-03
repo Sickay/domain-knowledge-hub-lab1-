@@ -1,0 +1,6 @@
+PREFIX : <http://www.semanticweb.org/ontologies/2026/automation#>
+
+ASK {
+  ?spindle a :Spindle ;
+           :hasStatus "overheated" .
+}
