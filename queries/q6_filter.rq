@@ -1,0 +1,7 @@
+PREFIX : <http://www.semanticweb.org/ontologies/2026/automation#>
+
+SELECT ?sensor ?temp WHERE {
+  ?sensor a :TemperatureSensor ;
+          :hasTemp ?temp .
+  FILTER(?temp >= 65.0 && ?temp <= 85.0)
+}
