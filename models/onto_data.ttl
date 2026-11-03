@@ -1,0 +1,119 @@
+@prefix : <http://example.org/industrial-automation#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Верстати ЧПК (індивіди 1-3)
+:CNC_01 a :CNC16K20F3 ;
+    :hasId "CNC-01" ;
+    :hasTemp 68.5 ;
+    :hasPressure 0.55 ;
+    :hasAxisCount 2 ;
+    :hasStatus "active" .
+
+:CNC_02 a :CNC16K20F3 ;
+    :hasId "CNC-02" ;
+    :hasTemp 79.2 ;
+    :hasPressure 0.52 ;
+    :hasAxisCount 2 ;
+    :hasStatus "warning" .
+
+:CNC_03 a :CNC16K20F3 ;
+    :hasId "CNC-03" ;
+    :hasTemp 45.0 ;
+    :hasPressure 0.58 ;
+    :hasAxisCount 2 ;
+    :hasStatus "idle" .
+
+# Шпинделі (індивіди 4-6)
+:Spindle_01 a :Spindle ;
+    :hasId "SP-01" ;
+    :hasTemp 70.1 ;
+    :hasStatus "normal" .
+
+:Spindle_02 a :Spindle ;
+    :hasId "SP-02" ;
+    :hasTemp 82.4 ;
+    :hasStatus "overheated" .
+
+:Spindle_03 a :Spindle ;
+    :hasId "SP-03" ;
+    :hasTemp 50.0 ;
+    :hasStatus "normal" .
+
+# Контролери ПЛК (індивіди 7-9)
+:PLC_01 a :PLCController ;
+    :hasId "PLC-01" ;
+    :controls :CNC_01 ;
+    :hasStatus "running" .
+
+:PLC_02 a :PLCController ;
+    :hasId "PLC-02" ;
+    :controls :CNC_02 ;
+    :hasStatus "running" .
+
+:PLC_03 a :PLCController ;
+    :hasId "PLC-03" ;
+    :controls :CNC_03 ;
+    :hasStatus "standby" .
+
+# Датчики температури (індивіди 10-13)
+:TS_01 a :TemperatureSensor ;
+    :hasId "TS-01" ;
+    :hasTemp 68.5 ;
+    :hasStatus "active" .
+
+:TS_02 a :TemperatureSensor ;
+    :hasId "TS-02" ;
+    :hasTemp 79.2 ;
+    :hasStatus "active" .
+
+:TS_03 a :TemperatureSensor ;
+    :hasId "TS-03" ;
+    :hasTemp 45.0 ;
+    :hasStatus "active" .
+
+:TS_04 a :TemperatureSensor ;
+    :hasId "TS-04" ;
+    :hasTemp 82.4 ;
+    :hasStatus "alarm" .
+
+# Датчики тиску (індивіди 14-16)
+:PS_01 a :PressureSensor ;
+    :hasId "PS-01" ;
+    :hasPressure 0.55 ;
+    :hasStatus "active" .
+
+:PS_02 a :PressureSensor ;
+    :hasId "PS-02" ;
+    :hasPressure 0.42 ;
+    :hasStatus "low_pressure" .
+
+:PS_03 a :PressureSensor ;
+    :hasId "PS-03" ;
+    :hasPressure 0.58 ;
+    :hasStatus "active" .
+
+# Вибродатчики (індивіди 17-19)
+:VS_01 a :VibrationSensor ;
+    :hasId "VS-01" ;
+    :hasStatus "normal" .
+
+:VS_02 a :VibrationSensor ;
+    :hasId "VS-02" ;
+    :hasStatus "high_vibration" .
+
+:VS_03 a :VibrationSensor ;
+    :hasId "VS-03" ;
+    :hasStatus "normal" .
+
+# Системи безпеки / Інтерлоки (індивіди 20-22)
+:Interlock_01 a :SafetyInterlock ;
+    :hasId "INT-01" ;
+    :hasStatus "armed" .
+
+:Interlock_02 a :SafetyInterlock ;
+    :hasId "INT-02" ;
+    :hasStatus "tripped" .
+
+:Interlock_03 a :SafetyInterlock ;
+    :hasId "INT-03" ;
+    :hasStatus "armed" .
