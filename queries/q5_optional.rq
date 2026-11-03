@@ -1,0 +1,10 @@
+PREFIX : <http://www.semanticweb.org/ontologies/2026/automation#>
+
+SELECT ?cnc ?id ?temp WHERE {
+  ?cnc a :CNC16K20F3 ;
+       :hasId ?id .
+  OPTIONAL {
+    ?sensor a :TemperatureSensor ;
+            :hasTemp ?temp .
+  }
+}
