@@ -1,0 +1,13 @@
+[
+  {
+    "timestamp": "2026-11-04T20:00:00",
+    "model": "gpt-4o-2024-08-06",
+    "parameters": {
+      "temperature": 0.0,
+      "seed": 42
+    },
+    "prompt_version": "rag_v1.md",
+    "raw_output": "На основі наданих даних, основний регламент виконується за схемою A [doc_101].",
+    "human_decision": "verified"
+  }
+]
