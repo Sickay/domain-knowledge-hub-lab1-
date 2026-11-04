@@ -1,0 +1,21 @@
+@prefix : <http://www.semanticweb.org/ontologies/2026/automation#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Порушення 1: Відсутній обов'язковий ідентифікатор (:hasId) для CNC_99
+:CNC_99 rdf:type :CNC16K20F3 ;
+    :hasAxisCount 3 ;
+    :hasStatus "active" .
+
+# Порушення 2: Температура 150.0 перевищує максимум (120.0) для TS_99
+:TS_99 rdf:type :TemperatureSensor ;
+    :hasId "TS-99" ;
+    :hasTemp 150.0 ;
+    :hasStatus "normal" .
+
+# Порушення 3: Недопустимий статус "broken", якого немає в паттерні
+:CNC_01 rdf:type :CNC16K20F3 ;
+    :hasId "CNC-01" ;
+    :hasAxisCount 3 ;
+    :hasStatus "broken" .
