@@ -1,0 +1,6 @@
+PREFIX : <http://www.semanticweb.org/ontologies/2026/automation#>
+
+SELECT (COUNT(?sensor) AS ?totalSensors) (AVG(?temp) AS ?avgTemperature) WHERE {
+  ?sensor a :TemperatureSensor ;
+          :hasTemp ?temp .
+}

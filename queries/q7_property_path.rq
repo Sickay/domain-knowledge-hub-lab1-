@@ -1,0 +1,6 @@
+PREFIX : <http://www.semanticweb.org/ontologies/2026/automation#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?subClass WHERE {
+  ?subClass rdfs:subClassOf+ :IndustrialEquipment .
+}

@@ -1,0 +1,10 @@
+PREFIX : <http://www.semanticweb.org/ontologies/2026/automation#>
+
+CONSTRUCT {
+  ?sensor :belongsToArea "HighTemperatureZone" .
+}
+WHERE {
+  ?sensor a :TemperatureSensor ;
+          :hasTemp ?temp .
+  FILTER(?temp > 70.0)
+}

@@ -1,0 +1,52 @@
+@prefix : <http://www.semanticweb.org/ontologies/2026/automation#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# Форма 1: Валідація ідентифікатора обладнання
+:EquipmentShape a sh:NodeShape ;
+    sh:targetClass :IndustrialEquipment ;
+    sh:property [
+        sh:path :hasId ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+    ] .
+
+# Форма 2: Валідація верстатів ЧПК (кількість осей)
+:CNC16K20F3Shape a sh:NodeShape ;
+    sh:targetClass :CNC16K20F3 ;
+    sh:property [
+        sh:path :hasAxisCount ;
+        sh:minCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 2 ;
+        sh:maxInclusive 5 ;
+    ] .
+
+# Форма 3: Валідація температурних датчиків
+:TemperatureSensorShape a sh:NodeShape ;
+    sh:targetClass :TemperatureSensor ;
+    sh:property [
+        sh:path :hasTemp ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive -40.0 ;
+        sh:maxInclusive 120.0 ;
+    ] .
+
+# Форма 4: Валідація датчиків тиску
+:PressureSensorShape a sh:NodeShape ;
+    sh:targetClass :PressureSensor ;
+    sh:property [
+        sh:path :hasPressure ;
+        sh:minCount 1 ;
+        sh:datatype xsd:decimal ;
+    ] .
+
+# Форма 5: Валідація форматів статусів обладнання
+:StatusPatternShape a sh:NodeShape ;
+    sh:targetClass :IndustrialEquipment ;
+    sh:property [
+        sh:path :hasStatus ;
+        sh:pattern "^(active|maintenance|overheated|critical|warning|normal)$" ;
+    ] .

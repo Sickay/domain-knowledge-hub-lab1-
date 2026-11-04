@@ -1,0 +1,14 @@
+Prompt 1: "Вивести всі станки з кількістю осей більше 3"
+SPARQL:
+PREFIX : <http://www.semanticweb.org/ontologies/2026/automation#>
+SELECT ?cnc ?id WHERE {
+  ?cnc a :CNC16K20F3 ; :hasId ?id ; :hasAxisCount ?axes .
+  FILTER(?axes > 3)
+}
+
+Prompt 2: "Знайти всі датчики температури, у яких статус критичний"
+SPARQL:
+PREFIX : <http://www.semanticweb.org/ontologies/2026/automation#>
+SELECT ?sensor ?id WHERE {
+  ?sensor a :TemperatureSensor ; :hasId ?id ; :hasStatus "critical" .
+}
