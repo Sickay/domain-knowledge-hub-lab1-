@@ -1,0 +1,4 @@
+id,statement,type,source,verification_level,status,comment
+1,"Регламент обробки замовлень зазвичай займає 3 робочі дні.",fact,doc_101,V1,verified,Затверджено за джерелом doc_101
+2,"У святкові дні регламент становить 5 робочих днів.",rule,doc_102,V1,verified,Затверджено за джерелом doc_102
+3,"Конфіденційні дані доступні будь-якому користувачу.",hypothesis,doc_103,V1,rejected,Відхилено: обграничено pre-filter
