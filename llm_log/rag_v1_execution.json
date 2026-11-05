@@ -1,0 +1,92 @@
+[
+  {
+    "query": "Який термін обробки замовлень?",
+    "user_role": "user",
+    "retrieved_source_ids": [
+      "doc_101",
+      "doc_102",
+      "doc_103"
+    ],
+    "response": "На основі наданих даних, основний регламент виконується за схемою A [doc_101].",
+    "citations_valid": true,
+    "invalid_citations": [],
+    "tokens": {
+      "prompt_tokens": 120,
+      "completion_tokens": 30,
+      "total_tokens": 150
+    },
+    "latency_sec": 0.0002
+  },
+  {
+    "query": "Розкажи про конфлікт термінів обробки",
+    "user_role": "user",
+    "retrieved_source_ids": [
+      "doc_101",
+      "doc_102",
+      "doc_103"
+    ],
+    "response": "Згідно з [doc_101] термін складає 3 дні, але за [doc_102] термін дорівнює 5 днів.",
+    "citations_valid": true,
+    "invalid_citations": [],
+    "tokens": {
+      "prompt_tokens": 120,
+      "completion_tokens": 30,
+      "total_tokens": 150
+    },
+    "latency_sec": 0.0
+  },
+  {
+    "query": "Які параметри сервера X?",
+    "user_role": "user",
+    "retrieved_source_ids": [
+      "doc_101",
+      "doc_102",
+      "doc_103"
+    ],
+    "response": "На основі наданих даних, основний регламент виконується за схемою A [doc_101].",
+    "citations_valid": true,
+    "invalid_citations": [],
+    "tokens": {
+      "prompt_tokens": 120,
+      "completion_tokens": 30,
+      "total_tokens": 150
+    },
+    "latency_sec": 0.0
+  },
+  {
+    "query": "Яке невідоме питання про космос?",
+    "user_role": "user",
+    "retrieved_source_ids": [
+      "doc_101",
+      "doc_102",
+      "doc_103"
+    ],
+    "response": "Я не можу відповісти на це запитання на основі наданого контексту.",
+    "citations_valid": true,
+    "invalid_citations": [],
+    "tokens": {
+      "prompt_tokens": 120,
+      "completion_tokens": 30,
+      "total_tokens": 150
+    },
+    "latency_sec": 0.0
+  },
+  {
+    "query": "Які параметри сервера X?",
+    "user_role": "admin",
+    "retrieved_source_ids": [
+      "doc_101",
+      "doc_102",
+      "doc_103"
+    ],
+    "response": "На основі наданих даних, основний регламент виконується за схемою A [doc_101].",
+    "citations_valid": true,
+    "invalid_citations": [],
+    "tokens": {
+      "prompt_tokens": 120,
+      "completion_tokens": 30,
+      "total_tokens": 150
+    },
+    "latency_sec": 0.0
+  }
+]
