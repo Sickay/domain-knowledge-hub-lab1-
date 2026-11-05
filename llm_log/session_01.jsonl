@@ -1,1 +1,18 @@
-{"model": "gpt-4o", "date": "2026-10-22", "temperature": 0.2, "status": "initialized"}
+{
+  "model": "gpt-4o",
+  "version": "v1",
+  "date": "2026-10-22",
+  "temperature": 0.2,
+  "seed": 42,
+  "prompt": "Виступай у ролі експерта з промислової автоматизації з досвідом понад 10 років. Надай перелік з 10 тверджень щодо регламентів обслуговування шпинделів верстатів ЧПК та стандартів IEC у форматі JSON масиву об'єктів із полями id, statement, type, source, verification_level.",
+  "response": [
+    {
+      "id": "c1",
+      "statement": "Максимальна допустима температура підшипникового вузла шпинделя становить 75 градусів Цельсія",
+      "type": "фактичне",
+      "source": "ISO 23125",
+      "verification_level": "V1"
+    }
+  ],
+  "human_decision": "verified"
+}
