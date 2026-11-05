@@ -61,4 +61,3 @@ MATCH (s:Sensor), (c:CNC16K20F3)
 WHERE toInteger(substring(s.id, 3)) % 10 = toInteger(substring(c.id, 4)) % 10
 CREATE (s)-[:MEASURES_PRESSURE {source: "Telemetry_Log", confidence: 0.91, validFrom: "2026-01-01"}]->(c)
 CREATE (s)-[:MEASURES_VIBRATION {source: "Telemetry_Log", confidence: 0.94, validFrom: "2026-01-01"}]->(c);
-Ось цей код підходить для пункту 1? якщо так як назвати його і куди вставити і скажи якщо для пункту 1 потрібно ще щось
